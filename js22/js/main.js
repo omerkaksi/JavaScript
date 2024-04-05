@@ -27,11 +27,11 @@ const initApp = () => {
 const div = view.querySelector("div");
 const h2 = div.querySelector("h2");
 view.addEventListener("click", (event) => {
-    view.style.backgroundColor ="purple";
+    event.target.style.backgroundColor ="purple";
 })
 div.addEventListener("click", (event) => {
     event.stopPropagation();
-    div.style.backgroundColor ="blue";
+    event.target.style.backgroundColor ="blue";
 })
 h2.addEventListener("click", (event) => {
     event.target.textContent ="Clicked";
