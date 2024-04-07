@@ -1,38 +1,21 @@
 //Fetch API
 //Callback, Promises, Thenables and Async/Await
 
-
-//Promises
-//3 states: Pending, Fulfilled, Rejected
-
-
-/* const users = fetch("https://jsonplaceholder.typicode.com/users")
-.then(response => {
-    console.log(response);
-    return response.json();
-})
-.then(data => {
-    data.forEach(user => {
-        console.log(user);
-    })
-});
-console.log(users); */
-
-//Async /Await
-const myUsers ={
-    userList: []
+//workflow function
+//Example-1
+const getAllUserEmails =async () => {
+const response = await fetch("https://jsonplaceholder.typicode.com/users");
+const jsonUserData = await response.json();
+const userEmailArray = jsonUserData.map(user =>{
+    return user.email;
+} );
+//console.log(userEmailArray);
+//return userEmailArray;
+postToWebPage(userEmailArray);
 }
-const myCoolFunction = async () => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    const jsonUserData = await response.json();
-    /* console.log(jsonUserData); */
-    return jsonUserData;
+
+const postToWebPage = (data) => {
+    console.log(data);
 }
-/* myCoolFunction(); */
-const anotherFunc = async () => {
-    const data = await myCoolFunction();
-    myUsers.userList = data;
-    console.log(myUsers.userList);
-}
-anotherFunc();
-console.log(myUsers.userList);
+
+getAllUserEmails();
