@@ -1,55 +1,38 @@
 //Fetch API
 //Callback, Promises, Thenables and Async/Await
 
-//Callbacks
-/* function firstFunction (parameters,callback) {
-    // do staff
-    callback();
-}
-
-//"callback hell"
-
-firstFunction(para, function(){
-    secondFunction(para,function(){
-        thirdFunction(para,function(){
-
-        });
-    });
-}); */
 
 //Promises
 //3 states: Pending, Fulfilled, Rejected
 
-const myPromise = new Promise((resolve,reject)=> {
-    const error = false;//true
-    if(!error){
-        resolve("Yes. resolved the promise")
-    } else {
-        reject("No. rejected the promise");
-        }
-});
-/* console.log(myPromise); */
-/* myPromise
-.then(value=> {
-    return value + 1 ;
+
+/* const users = fetch("https://jsonplaceholder.typicode.com/users")
+.then(response => {
+    console.log(response);
+    return response.json();
 })
-.then(newValue => {
-    console.log(newValue);
-})
-.catch(err => {
-    console.error(err);
-}) */
-
-const myNextPromise = new Promise((resolve,reject) => {
-    setTimeout(function(){
-        resolve("myNextPromise resolved!");
-    },3000); //3s delay
+.then(data => {
+    data.forEach(user => {
+        console.log(user);
+    })
 });
+console.log(users); */
 
-myNextPromise.then(value => {
-    console.log(value);
-});
-
-myPromise.then(value => {
-    console.log(value);
-});
+//Async /Await
+const myUsers ={
+    userList: []
+}
+const myCoolFunction = async () => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const jsonUserData = await response.json();
+    /* console.log(jsonUserData); */
+    return jsonUserData;
+}
+/* myCoolFunction(); */
+const anotherFunc = async () => {
+    const data = await myCoolFunction();
+    myUsers.userList = data;
+    console.log(myUsers.userList);
+}
+anotherFunc();
+console.log(myUsers.userList);
