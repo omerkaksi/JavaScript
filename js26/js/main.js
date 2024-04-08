@@ -3,19 +3,46 @@
 
 //workflow function
 //Example-1
-const getAllUserEmails =async () => {
-const response = await fetch("https://jsonplaceholder.typicode.com/users");
-const jsonUserData = await response.json();
-const userEmailArray = jsonUserData.map(user =>{
-    return user.email;
-} );
-//console.log(userEmailArray);
-//return userEmailArray;
-postToWebPage(userEmailArray);
+const getDadJoke =async () => {
+const response = await fetch("https://icanhazdadjoke.com",{
+    method: "GET",
+headers: {
+    Accept: "application/json"
+}
+});
+const jsonJokeData = await response.json();
+console.log(jsonJokeData);
+console.log(jsonJokeData.joke);
+}
+getDadJoke();
+
+const getDadJoke2 =async () => {
+    const response = await fetch("https://icanhazdadjoke.com",{
+        method: "GET",
+    headers: {
+        Accept: "text/plain"
+    }
+    });
+    const textJokeData = await response.text();
+    console.log(textJokeData);
+    }
+    getDadJoke2();
+
+    
+
+const jokeObject = {
+    "id": "GeFQZ89h",
+    "joke": "The rotation of earth really makes my day."
 }
 
-const postToWebPage = (data) => {
-    console.log(data);
-}
-
-getAllUserEmails();
+    const postData =async (jokeObj) => {
+    const response = await fetch("https://httpbin.org/post",{
+        method: "POST",
+    headers: { "Content-Type":"application/json"
+            },
+    body: JSON.stringify(jokeObj)
+    });
+    const jsonResponse = await response.json();
+    console.log(jsonResponse.headers);
+    }
+    postData(jokeObject);
