@@ -3,7 +3,7 @@ document.getElementById("phoneNum").addEventListener("input", (event) => {
   const input = document.getElementById("phoneNum");
   const format = document.querySelector(".phoneFormat");
   const phone = input.value;
-  const found = regex.test(phone);
+  const found = regex.test(phone);//Test phone number with regex
   if (!found && phone.length) {
     input.classList.add("invalid");
     format.classList.add("block");
@@ -11,10 +11,11 @@ document.getElementById("phoneNum").addEventListener("input", (event) => {
     input.classList.remove("invalid");
     format.classList.remove("block");
   }
-});
-
+});    // end of first part
+//second part submit , save numbers without notation.
+//regex eliminate characters
 document.getElementById("phoneForm").addEventListener("submit", (event) => {
-  event.preventDefault();
+  event.preventDefault(); //page won't reload.
   const input = document.getElementById("phoneNum");
   const regex = /[()-. ]/g;
   const savedPhoneNum = input.value.replaceAll(regex, "");
